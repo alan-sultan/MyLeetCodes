@@ -1,4 +1,9 @@
 class Solution:
     def getSneakyNumbers(self, nums: List[int]) -> List[int]:
-        return multimode(nums)
+        count = Counter(nums)
+        res = []
+        for k, v in count.items():
+            if v == 2:
+                res.append(k)
+        return res
                 
