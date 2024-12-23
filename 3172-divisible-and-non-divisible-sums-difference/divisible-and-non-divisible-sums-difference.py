@@ -1,10 +1,6 @@
 class Solution:
     def differenceOfSums(self, n: int, m: int) -> int:
-        div = 0
-        ndiv = 0
-        for i in range(1, n + 1):
-            if i % m == 0:
-                div += i
-            else:
-                ndiv += i
-        return(ndiv - div)
+        sumN = n * (n + 1) // 2
+        t = n // m
+        m_s = m * t * (t + 1) // 2
+        return sumN - 2 * m_s
