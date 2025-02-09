@@ -1,3 +1,5 @@
 class Solution:
     def minPartitions(self, n: str) -> int:
-        return int(max(n))
+        for num in range(9, -1, -1):
+            if str(num) in n:
+                return num
