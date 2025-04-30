@@ -1,13 +1,17 @@
 class Solution:
     def maxSum(self, grid: List[List[int]], limits: List[int], k: int) -> int:
         heap = []
+        ans = []
         for i, row in enumerate(grid):
-            row = sorted(row, reverse = True)
-            for j in range(limits[i]):
-                heappush(heap, -1 * (row[j]))
-                
+            for ch in row:
+                heappush(heap, -1 * (ch))
+            for _ in range(limits[i]):
+                heappush(ans, heappop(heap))
+            while heap:
+                heappop(heap)
+
         sumN = 0
         for i in range(k):
-            sumN += heappop(heap)
+            sumN += heappop(ans)
         return -1 * sumN
         
