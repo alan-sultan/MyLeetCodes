@@ -2,7 +2,7 @@ class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         graph = [[] for _ in range(numCourses)]
         inDegree = [0] * numCourses
-        queue = deque()
+        heap = []
         ans = []
 
         for cou, prec in prerequisites:
@@ -11,16 +11,16 @@ class Solution:
 
         for cou in range(numCourses):
             if inDegree[cou] == 0:
-                queue.append(cou)
+                heappush(heap, cou)
             
-        while queue:
-            cou = queue.popleft()
+        while heap:
+            cou = heappop(heap)
             ans.append(cou)
 
             for neighbour in graph[cou]:
                 inDegree[neighbour] -= 1
                 if inDegree[neighbour] == 0:
-                    queue.append(neighbour)
+                    heappush(heap, neighbour)
 
         if len(ans) != numCourses:
             return []
